@@ -24,8 +24,14 @@
         }
         .authors{
             text-align: center;
-            font-size: 20px;
-            
+            font-size: 20px;  
+        }
+        .abstract{
+            margin-top: 15px;
+        }
+        .bibtex{
+            margin-top: 10px;
+            border-top:1px solid gray;
         }
         a{color:#000000;}      
         /* a:visited {color:gray;}   */
@@ -41,35 +47,85 @@
         <p class="authors">
             <a href="#">Yu Qiao<sup>*</sup></a>,
             <a href="https://wukaoliu.github.io/">Yuhao Liu<sup>*</sup></a>,
-            <a href="http://faculty.dlut.edu.cn/yangxin/zh_CN/index/949121/list/index.htm">Xin Yang<sup>^</sup></a>,
+            <a href="http://faculty.dlut.edu.cn/yangxin/zh_CN/index/949121/list/index.htm">Xin Yang<sup>†</sup></a>,
             <a href="#">Dongsheng Zhou</a>,
-            <a href="#">Mingliang Xu</a>,
+            <a href="http://www5.zzu.edu.cn/cyjsy/info/1060/1308.htm">Mingliang Xu</a>,
             <a href="#">Qiang Zhang</a>,
-            <a href="#">Xiaopeng Wei</a>
+            <a href="#">Xiaopeng Wei<sup>†</sup></a>
         </p>
+        <p style="font-size: 17px; text-align: center; margin-top: -5px;">(* Joint first authors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; † corresponding author)</pclass="text-center" style="font-size: 20px; ">
         <p class="text-center" style="font-size: 20px; "><i>IEEE Computer Vision and Pattern Recognition (CVPR), 2020</i></p>
         <div class="main">
             <img src="figures/visualization.png" width = "100%">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; we prpose a new method that can predict alpha mattes without requiring an input trimap or any user interation. 
             The visual results is shown above. More detailed comparisons and analysis can refer to the supplementary materials.
             <div class="abstract">
-                <h2>
+                <h2 >
                     Abstract
-                </h2>
+                </h2 >
+                
                 <p style="word-break: break-word; text-align:justify;">
-                    Existing deep learning based matting algorithms primarily resort to high-level semantic features to improve the overall structure of alpha mattes. However, we argue
-                    that advanced semantic features extracted from CNNs contribute unequally for alpha perception and we are supposed to reconcile advanced semantic information with low-level spatial cues to refine foreground details. In this paper, we
-                    propose an end-to-end Hierarchical Attention Matting Network (HAttMatting), which can predict exquisite structure of an alpha matte from single RGB image without additional
-                    input. Specifically, we employ spatial and channel-wise attention to integrate spatial cues and pyramidal features in an innovative fashion. This blended attention mechanism
-                    can perceive alpha mattes from refined boundaries and adaptive semantics respectively. We also introduce a hybrid loss fusing Structural SIMilarity (SSIM), Mean Square Error (MSE) and Adversarial loss to guide the network to
-                    further improve the overall foreground structure. Besides, we construct a large-scale image matting dataset comprised of 59,600 training images and 1000 test images (totally
-                    646 individual foreground alpha), and they can further improve the robustness of our hierarchical structure aggregation. Extensive experiments demonstrate that the proposed
-                    HAttMatting can capture sophisticated foreground structure and possess remarkable versatility, and achieve state-ofthe-art performance with single RGB image as input.
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Existing deep learning based matting algorithms primarily resort to high-level semantic features to improve the overall 
+                    structure of alpha mattes. However, we argue that advanced semantics extracted from CNNs contribute unequally for alpha perception and we are supposed to 
+                    reconcile advanced semantic information with low-level appearance cues to refine the foreground details. In this paper, we propose an end-to-end Hierarchical
+                    Attention Matting Network (HAttMatting), which can predict the better structure of alpha mattes from single RGB images without additional input. Specifically, 
+                    we employ spatial and channel-wise attention to integrate appearance cues and pyramidal features in a novel fashion. This blended attention mechanism can perceive 
+                    alpha mattes from refined boundaries and adaptive semantics. We also introduce a hybrid loss function fusing Structural SIMilarity (SSIM), Mean Square Error (MSE)
+                    and Adversarial loss to guide the network to further improve the overall foreground structure. Besides, we construct a large-scale image matting dataset comprised
+                    of $59,600$ training images and $1000$ test images (total $646$ distinct foreground alpha mattes), which can further improve the robustness of our hierarchical 
+                    structure aggregation model. Extensive experiments demonstrate that the proposed HAttMatting can capture sophisticated foreground structure and achieve 
+                    state-of-the-art performance with single RGB images as input.
                 </p>
             </div>
+            <div class="method">
+                <h2>Method</h2>
+                <img src="figures/pipeline-final.jpg" width="100%" style="margin-top: 10px;">
+                <p style="word-break: break-word; text-align: justify;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    The core idea of our approach is to suppress redundant
+                    semantics in advanced features and eliminate futile BG
+                    details in spatial cues, then aggregate them to predict accurate
+                    alpha mattes. For this purpose, we adopt channel-wise
+                    attention to distill pyramidal features, and perform spatial
+                    attention on spatial cues to eliminate image texture details
+                    outside FG simultaneously.
+                </p>
+            </div>
+            <div class="our-dataset">
+                <h2>Our Dataset</h2>
+                <img src="figures/our-dataset.png" alt="" width="100%" style="margin-top: -10px;">
+                <p style="word-break: break-word; text-align: justify;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    The above picture is some examples of our <b>Distinctions-646</b> whcih is composed of  646 individual FG images. We divide
+                    these FG objects into 596 and 50, and then produce 59,600
+                    training images and 1000 test images according to the composition
+                    rules in DIM. Meanwhile，we will release our composition acode which is accelerated by GPU and faster 3-5 times than the original code.
+                </p>
+            </div>
+            <div class="Downloads">
+                <h2>Downloads</h2>
+                <p style="font-size: 20px;">Source Code:&nbsp;<a href="https://github.com/wukaoliu/CVPR2020-HAttMatting">Code</a></p>
+                <p style="font-size: 20px; margin-top: -10px;">Paper:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">Paper</a></p><br>
+                
+
+            </div>
+
+
+            <div class="bibtex">
+                <h5 style="color: gray;">
+                    BibTex
+                </h5>
+                <pre>@InProceedings{Qiao_2020_CVPR,
+    author = {Qiao, Yu and Liu, Yuhao and Yang, Xin and Zhou, Dongsheng and Xu, Mingliang and Zhang, Qiang and Wei, Xiaopeng},
+    title = {Attention-Guided Hierarchical Structure Aggregation for Image Matting},
+    booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month = {June},
+    year = {2020}               
+    }</pre>
+            </div>
+            
         </div>
-
-
+   
     </div>
 </body>
 </html>
